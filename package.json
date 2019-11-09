@@ -1,0 +1,44 @@
+{
+  "name": "@epiphany/version",
+  "version": "1.0.0",
+  "description": "A simple CLI tool to bump package versions",
+  "keywords": [],
+  "license": "MIT",
+  "homepage": "https://github.com/IAmFletcher/version#readme",
+  "bugs": "https://github.com/IAmFletcher/version/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IAmFletcher/version.git"
+  },
+  "author": "Fletcher Goss <contact@iamfletcher.com> (https://linktr.ee/fletcher)",
+  "bin": {
+    "version": "./bin/index.js"
+  },
+  "directories": {
+    "bin": "/bin"
+  },
+  "scripts": {
+    "clean": "rm -rf node_modules yarn-error.log",
+    "lint": "eslint --fix ."
+  },
+  "dependencies": {
+    "inquirer": "^7.0.0",
+    "simple-git": "^1.126.0"
+  },
+  "devDependencies": {
+    "eslint": "6.6.0",
+    "eslint-config-epiphany": "0.2.0",
+    "eslint-config-semistandard": "^15.0.0",
+    "eslint-config-standard": "^13.0.1",
+    "eslint-plugin-import": ">=2.18.0",
+    "eslint-plugin-node": ">=9.1.0",
+    "eslint-plugin-promise": ">=4.2.1",
+    "eslint-plugin-standard": ">=4.0.0"
+  },
+  "peerDependencies": {},
+  "peerDependenciesMeta": {},
+  "optionalDependencies": {},
+  "publishConfig": {
+    "access": "public"
+  }
+}

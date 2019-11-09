@@ -1,0 +1,6 @@
+{
+  "extends": [
+    "epiphany",
+    "epiphany/node"
+  ]
+}
