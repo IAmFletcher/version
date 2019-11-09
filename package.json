@@ -2,7 +2,9 @@
   "name": "@epiphany/version",
   "version": "1.0.0",
   "description": "A simple CLI tool to bump package versions",
-  "keywords": [],
+  "keywords": [
+    "cli"
+  ],
   "license": "MIT",
   "homepage": "https://github.com/IAmFletcher/version#readme",
   "bugs": "https://github.com/IAmFletcher/version/issues",
@@ -35,9 +37,6 @@
     "eslint-plugin-promise": ">=4.2.1",
     "eslint-plugin-standard": ">=4.0.0"
   },
-  "peerDependencies": {},
-  "peerDependenciesMeta": {},
-  "optionalDependencies": {},
   "publishConfig": {
     "access": "public"
   }
