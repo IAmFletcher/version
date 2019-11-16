@@ -28,7 +28,7 @@ $ version
 **With yarn**
 
 ```
-yarn global install @epiphany/version
+yarn global add @epiphany/version
 ```
 
 **With npm**
