@@ -1,6 +1,6 @@
 {
   "extends": [
-    "epiphany",
-    "epiphany/node"
+    "@epiphany/eslint-config/es6",
+    "@epiphany/eslint-config/node"
   ]
 }
