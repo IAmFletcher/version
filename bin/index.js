@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+/* eslint-disable no-use-before-define */
+
 const { readFile, writeFile } = require('fs');
 const { prompt } = require('inquirer');
 const git = require('simple-git/promise')();
@@ -14,18 +16,18 @@ const QUESTIONS = [
     choices: [
       {
         name: 'Major',
-        value: 'major'
+        value: 'major',
       },
       {
         name: 'Minor',
-        value: 'minor'
+        value: 'minor',
       },
       {
         name: 'Patch',
-        value: 'patch'
-      }
-    ]
-  }
+        value: 'patch',
+      },
+    ],
+  },
 ];
 
 let packageJSON = null;
@@ -35,7 +37,7 @@ readPackageJSON()
     packageJSON = JSON.parse(data);
 
     if (!packageJSON) {
-      throw new Error('packageJSON is ' + typeof packageJSON);
+      throw new Error(`packageJSON is ${typeof packageJSON}`);
     }
 
     return prompt(QUESTIONS);
@@ -43,7 +45,7 @@ readPackageJSON()
   .then(({ version }) => {
     return {
       version,
-      semver: getSemVer()
+      semver: getSemVer(),
     };
   })
   .then(({ version, semver }) => {
@@ -58,9 +60,11 @@ readPackageJSON()
 
     return writePackageJSON();
   })
-  .then(() => { commitPackageJSON(); })
   .then(() => {
-    console.log('Successfully bumped version to ' + packageJSON.version);
+    commitPackageJSON();
+  })
+  .then(() => {
+    console.log(`Successfully bumped version to ${packageJSON.version}`);
   })
   .catch((err) => {
     console.error(err);
@@ -90,22 +94,22 @@ function getSemVer () {
     major: parseInt(match.groups.major, 10),
     minor: parseInt(match.groups.minor, 10),
     patch: parseInt(match.groups.patch, 10),
-    extra: match.groups.extra
+    extra: match.groups.extra,
   };
 }
 
 function bumpVersion (version, { major, minor, patch, extra }) {
   switch (version) {
-    case 'major':
-      packageJSON.version = `${major + 1}.0.0` + extra;
-      break;
-    case 'minor':
-      packageJSON.version = `${major}.${minor + 1}.0` + extra;
-      break;
-    case 'patch':
-      packageJSON.version = `${major}.${minor}.${patch + 1}` + extra;
-      break;
-    default:
+  case 'major':
+    packageJSON.version = `${major + 1}.0.0${extra}`;
+    break;
+  case 'minor':
+    packageJSON.version = `${major}.${minor + 1}.0${extra}`;
+    break;
+  case 'patch':
+    packageJSON.version = `${major}.${minor}.${patch + 1}${extra}`;
+    break;
+  default:
   }
 }
 
@@ -125,5 +129,7 @@ function writePackageJSON () {
 
 function commitPackageJSON () {
   return git.add(PACKAGE_JSON_PATH)
-    .then(() => { git.commit('Bump version to v' + packageJSON.version); });
+    .then(() => {
+      git.commit(`Bump version to v${packageJSON.version}`);
+    });
 }
