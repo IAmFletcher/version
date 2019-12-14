@@ -3,6 +3,7 @@
 /* eslint-disable no-use-before-define */
 
 const { readFile, writeFile } = require('fs');
+const { EOL } = require('os');
 const { prompt } = require('inquirer');
 const git = require('simple-git/promise')();
 
@@ -117,7 +118,7 @@ function writePackageJSON () {
   return new Promise((resolve, reject) => {
     const data = JSON.stringify(packageJSON, null, 2);
 
-    writeFile(PACKAGE_JSON_PATH, data, (err) => {
+    writeFile(PACKAGE_JSON_PATH, data + EOL, (err) => {
       if (err) {
         return reject(err);
       }
